@@ -5,36 +5,35 @@ If you would like to clone the file and check it out for yourself you will be ab
 
 **1. Clone the git file**
 ```
-git@github.com:pdops/Projects.git
+git clone git@github.com:pdops/Projects.git
 ```
 **2. Install the depenencies (for linux)**
 ```
 sudo apt-get install vagrant 
 sudo apt install virtualbox 
 ```
-Now that you have the file , let me start explaining how I created it.
+Now that you have the necessities , let me start explaining how to create it.
 
-To beging with I initiated a vagrant file in a empty folder , and from there on our I deleted the contents of the file copying the main settings to use as reference.
-For the first step I used the command:
+Create an empty folder and initialize the vagrant file using the command:
 ```
 vagrant init bento/ubuntu-18.04
 ```
-and once the machine had been initiated and the file created I started creating the configuration's for the multiple server by providing each server with a unique 
-hostname , box , Ip and ssh port so that I can connect to each of the individually. As an example I have provided the configuartion for the first server which is
-supposed to be a Ubuntu server: 
+and once the vagrant file has been created start by opening the file with editor of your choice and delete all of the uncessery parts just leaving the configuartions so that it
+can be used as a reference. Once that has been done , you will have to start by defining all of the host and putting them under one variable name so that they can be used as a
+reference later. Each host should have it's own hostname , box with the image associated with it ,unique ip address and ssh ports so that the machines can be connected with ssh
+on the different stations. This is a example of the defined host and one of the configuartions for the hosts:
 ```
-{
-  :hostname => "Ubuntu",
-  :box => "bento/ubuntu-18.04",
-  :ip => "172.16.1.50",
-  :ssh_port => '2200'
-},
+servers =[
+  {
+    :hostname => "Ubuntu",
+    :box => "bento/ubuntu-18.04",
+    :ip => "172.16.1.50",
+    :ssh_port => '2200'
+  },
 ```
-I also wanted to define what I was going to call the 3 configurations when I was referencing to them so I put them in square brackets and name the entire
-configuartion servers.
-
-Once the configuartions was set up I wanted to create a loop for all of the configuartions that I set up so that vagrant could create them one after another.
-To do that I used servers.each to reference the configuartion group that I named.
+Once the hosts have been set create a loop for all of the host options that were set up so that vagrant can reference and loop trough them.
+To do that use servers.each to reference the configuartion group that was named servers , from there on out define a variable name , the name that was used for the project was 
+machine , once it has been completed a loop needs to be be done for the rest of the configurations which can be created using the config.vm.define command which creates a loop and you can use the machine variable which will allow you to reference each of the host and after that define it as node. So basicly what the 2 lops do are to reference the hosts and after that add each of the configurations to the referenced hosts.
 ```
 servers.each do |machine|
   config.vm.define machine [:hostname] do |node|
@@ -48,9 +47,7 @@ servers.each do |machine|
   end
 end
 ```
-Once everything has been completed , I saved the program and tried to see if the servers would run , so first I checked for syntax error's using vagrant validate
-and once everything was ok , I used the vagrant up command and all the servers ran perfectly and I was able to connect to  them using ssh however I had to define 
-which machine I was connecting to as just connecting with ssh would not do anything.
+Once the loops and configurations have been finished save the Vagrantfile and open up the terminal so that you can test if the machine is working , first check for any syntax errors by using the vagrant validate command and and if everything is ok , the command will return a sucsefull status. Finally boot up the machine by using the vagrant up command and after that you will see all of the machines booting up 1 by 1 and once finished , you will be able to connect to any of them by using the vagrant ssh and any of the host names associated with the machine. 
 
 ```
 vagrant validate
