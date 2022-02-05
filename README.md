@@ -25,7 +25,7 @@ servers =[
   },
 ```
 Once the hosts have been set create a loop for all of the host options that were set up so that vagrant can reference and loop trough them.
-To do that use servers.each to reference the configuartion group that was named *"servers"* , from there on out define a variable *"name"* , the name that was used for the project was *"machine"* , once it has been completed a loop needs to be be done for the rest of the configurations which can be created using the config.vm.define command which creates a loop and you can use the machine variable which will allow you to reference each of the host and after that define it as node.
+To do that use servers.each to reference the configuartion group that was named *"servers"* , from there on out define a variable *"name"* , the name that was used for the project was *"machine"* , once it has been completed a loop needs to be be done for the rest of the configurations which can be created using the **config.vm.define** command which creates a loop and you can use the machine variable which will allow you to reference each of the host and after that define it as node.
 ```
 servers.each do |machine|
   config.vm.define machine [:hostname] do |node|
