@@ -16,13 +16,13 @@ Now that you have everything necessary , create an empty folder and inside of it
 ```
 version '3.7'
 ```
-Now that the version has been defined , the services needed for the first file are wordpress and a database which will be mysql. Once the services have been named 
+Now that the version has been defined , the services needed for the file are wordpress and a database which will be **MySQL**. Once the services have been named 
 you will have to provide them with all of the attributes needed . For the database , the configurations that were added were the image , container_name, volumes, ports, restart and environment. 
-1. image - provides the instructions for installing mysql and wordpress from dockerhub.
+1. image - provides the instructions for installing **MySQL** and **WordPress** from [dockerhub](https://hub.docker.com/).
 2. container_name - sets the name for the container
 3. volumes - creating a location where the files from the database and wordpress will be saved after every ended session so that the progress that was made is not lost.
-4. ports - exposing the mysql ports so that we are able to connect from the host using the phpmyadmin.yml file that was created.
-5. restart - if for any reason the container fails it can get restarted and fix the issue.
+4. ports - exposing a port so that if needed , the host can connect to the database outside of the container
+5. restart - if there is any kind of a error , the container will restart itself.
 6. environment - choosing variables and customizing them so that we can access our database.
 ```
 services:
