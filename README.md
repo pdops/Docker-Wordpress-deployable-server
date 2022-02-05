@@ -5,7 +5,7 @@
 ```
 git clone git@github.com:pdops/Projects.git
 ```
-**2. Install the depenencies (for linux)**
+**2. Install the dependencies (for linux)**
 ```
 sudo apt-get install vagrant 
 sudo apt install virtualbox 
