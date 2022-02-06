@@ -37,3 +37,9 @@ phpmyadmin:
       - 8899:80
 ```
 Once the instructions have been written , save the file and test it out by opening the terminal and typing the command **docker-compose up -d** which will build the docker compose file . Finally open up your browser and try connecting to the phpmyadmin website , by typing in **"localhost:8899"** which should show the phpmyadmin requesting a server , username and password . For the *'server:'* you will need your ip address by using the **ifconfig** command together with the port that was used for the database and after typing in the password and username from the database the connection to the phpmyadmin website should be successful and inside you will have access to the wordpress database. To shut down the containers you can write **docker-compose down**. 
+```
+docker-compose up -d
+ifconfig
+docker-compose down
+```
+This was the entire guide for this Project , hopefully it was helpful.
