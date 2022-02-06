@@ -11,8 +11,9 @@ sudo apt install docker.io
 ```
 **3 Creating the Wordpress file as well as the database to accompany it**
 
-Now that you have everything necessary , create an empty folder and inside of it create a new file and name it finally adding .yml as a extension opening it with the edditor of your choice. A version needs to be provided to the .yml file so that docker can so that docker can use the subset of commands that docker will understand. The version of used here is 3.7 as it provides all of the necessary commands to run the file successfully.
+Now that you have everything necessary , create an empty folder and inside of it create a new file and name it finally adding .yml as a extension opening it with the edditor of your choice. A version needs to be provided to the .yml file so that docker can use the subset of commands that docker will understand.
 
+The version used here is 3.7 as it provides all of the necessary commands to run the file successfully:
 ```
 version '3.7'
 ```
