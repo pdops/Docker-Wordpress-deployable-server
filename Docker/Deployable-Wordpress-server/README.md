@@ -41,7 +41,7 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
 ```
-As for wordpress service , in order for it to work the mysql container needs to be running before the container starts, and for that to happen the depends_on option is used and the database is specified. After that the wordpress image is being specified.  **volumes** ,**ports** and **restart** have the same functions as the ones for the database , but for the **environemnt** ,wordpress and the appache server need to know how to communicate with the database so the **WORDPRESS_DB_HOST** has been provided with the database service name and port:
+As for wordpress service , in order for it to work the **MySQL** container needs to be running before the container starts, and for that to happen the **depends_on** option is used and the database is specified. After that the wordpress image is being specified.  **Volumes** ,**ports** and **restart** have the same functions as the ones for the database , but for the **environemnt** ,wordpress and the appache server need to know how to communicate with the database so the **WORDPRESS_DB_HOST** has been provided with the database service name and port:
 ```
   wordpress:
     depends_on:
@@ -58,7 +58,7 @@ As for wordpress service , in order for it to work the mysql container needs to 
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress 
 ```
-When both the service and the database are ready the file can be tested by writing docker-compose up -d which will build and run the container in the background. To check the containers and the cpu and memory usage use the docker stats command.As for testing to see if it works , the best way to do that would be to open a browser and write **"localhost:8888"** as that is the port to which the wordpress website is connected and you should be able to register , create a website  and even after restarting the docker container the data will be present. To shut down the containers you can write docker-compose down
+When both the service and the database are ready the file can be tested by writing **docker-compose up -d** which will build and run the container in the background. To check the containers and the cpu and memory usage use the **docker stats** command.As for testing to see if it works , the best way to do that would be to open a browser and write **"localhost:8888"** as that is the port to which the wordpress website is connected and you should be able to register , create a website  and even after restarting the docker container the data will be present. To shut down the containers you can write **docker-compose down**.
 ```
 docker-compose up -d
 docker stats
