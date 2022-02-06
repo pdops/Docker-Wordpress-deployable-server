@@ -1,5 +1,5 @@
 # Project
-## Using phpmyadmin container to connect to MySQL using Docker.
+## Using phpmyadmin container to connect to MySQL using docker compose.
 
 This file will allow the database from the Deployable-Wordpress-server to be connected from localhost using a docker compose file.
 To reference the Deployable Wordpress server guide you will be able to do that from here :
