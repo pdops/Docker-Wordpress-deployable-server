@@ -21,8 +21,8 @@ Now that the version has been defined , the services needed for the file are wor
 you will have to provide them with all of the attributes needed . For the database , the configurations that were added were the image , container_name, volumes, ports, restart and environment. 
 1. image - provides the instructions for installing **MySQL** and **WordPress** from [dockerhub](https://hub.docker.com/).
 2. container_name - sets the name for the container
-3. volumes - creating a location where the files from the database and wordpress will be saved after every ended session so that the progress that was made is not lost.
-4. ports - exposing a port so that if needed , the host can connect to the database outside of the container
+3. volumes - creating a location where the files from the database and wordpress will be saved after every restart.
+4. ports - exposing a port so that if needed , the host can connect to the database outside of the container.
 5. restart - if there is any kind of a error , the container will restart itself.
 6. environment - choosing variables and customizing them so that we can access our database.
 ```
@@ -41,7 +41,7 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
 ```
-As for wordpress service , in order for it to work the mysql container needs to be already running before the container even starts, and for to happen the **dpends_on** command is used and the database is specified. After that the image imported is for the wordpress website and it is using the latest version of it. The **container_name** , **volumes** ,**ports** and **restart** have the same functions as the ones for the database , but for the **environemnt** ,wordpress and the appache server need to know how to communicate with the database so the **WORDPRESS_DB_HOST** has been provided with the database service name and port:
+As for wordpress service , in order for it to work the mysql container needs to be running before the container starts, and for that to happen the depends_on option is used and the database is specified. After that the wordpress image is being specified.  **volumes** ,**ports** and **restart** have the same functions as the ones for the database , but for the **environemnt** ,wordpress and the appache server need to know how to communicate with the database so the **WORDPRESS_DB_HOST** has been provided with the database service name and port:
 ```
   wordpress:
     depends_on:
@@ -58,7 +58,7 @@ As for wordpress service , in order for it to work the mysql container needs to 
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress 
 ```
-When both the service and the database are ready the file can be tested by writing **docker-compose up -d** which will compose and run the container in the background. To check the containers and the cpu and memmory usage the **docker stats** command will be able to show it. As for testing to see if it works , the best way to do that would be to open a browser and write **"localhost:8888"** as that is the port to which the wordpress website is connected and you should be able to register , create a website and even after shutting down the docker container after putting it back up you will still be at the same place where you finished off. To shut down the containers you can write **docker-compose down**
+When both the service and the database are ready the file can be tested by writing docker-compose up -d which will build and run the container in the background. To check the containers and the cpu and memory usage use the docker stats command.As for testing to see if it works , the best way to do that would be to open a browser and write **"localhost:8888"** as that is the port to which the wordpress website is connected and you should be able to register , create a website  and even after restarting the docker container the data will be present. To shut down the containers you can write docker-compose down
 ```
 docker-compose up -d
 docker stats
